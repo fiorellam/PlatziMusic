@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   Platform,
@@ -17,10 +11,8 @@ import Icon from 'react-native-vector-icons/dist/Ionicons';
 
 export default class ArtistBox extends Component {
   render() {
-    const image = 'https://0b704daaaeca42047be7-e9eda9b75b7eaa5ed72327ff54b07596.ssl.cf1.rackcdn.com/images/eventos/5158/imagens/thumb/moraten-bogota.jpg?1506717413'
-    const name = 'Morat'
-    const likes = 200
-    const comments = 140
+    console.warn('El nombre ', this.props.artist.name);
+    const {image, name, likes, comments} = this.props.artist
 
     return (
 
@@ -46,8 +38,16 @@ export default class ArtistBox extends Component {
 
 const styles = StyleSheet.create({
   artistBox:{
+    margin: 5,
     flexDirection: 'row',
     backgroundColor: 'white',
+    shadowColor: 'black',
+    shadowOpacity: .9,
+    shadowOffset: {
+      height: 1,
+      width: -2,
+    },
+    elevation: 4,
   },
   image: {
     width: 150,

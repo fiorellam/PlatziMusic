@@ -19,14 +19,21 @@ import ArtistBox from './components/ArtistBox';
 
 export default class App extends Component  {
   render() {
-    const image = 'https://0b704daaaeca42047be7-e9eda9b75b7eaa5ed72327ff54b07596.ssl.cf1.rackcdn.com/images/eventos/5158/imagens/thumb/moraten-bogota.jpg?1506717413'
-    const name = 'Morat'
-    const likes = 200
-    const comments = 140
-
+    const artist = {
+      image: 'https://0b704daaaeca42047be7-e9eda9b75b7eaa5ed72327ff54b07596.ssl.cf1.rackcdn.com/images/eventos/5158/imagens/thumb/moraten-bogota.jpg?1506717413',
+      name: 'Morat',
+      likes: 67200,
+      comments: 45140
+    }
     return (
       <View style={styles.container}>
-        <ArtistBox/>
+        <ArtistBox artist={artist}/>
+        <ArtistBox artist={artist}/>
+        <ArtistBox artist={artist}/>
+        <ArtistBox artist={artist}/>
+        <ArtistBox artist={artist}/>
+        <ArtistBox artist={artist}/>
+        <ArtistBox artist={artist}/>
       </View>
     );
   }
