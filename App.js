@@ -13,8 +13,8 @@ import {
 
 import {Scene, Router} from 'react-native-router-flux';
 
-import HomeView from './components/HomeView';
-import ArtistDetailView from './components/ArtistDetailView';
+import HomeView from './src/HomeView';
+import ArtistDetailView from './src/ArtistDetailView';
 
 export default class App extends Component  {
 
