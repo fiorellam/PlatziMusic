@@ -21,7 +21,7 @@ export default class ArtistBox extends Component {
   handlePress = () => {
     this.toogleLike()
   }
-
+  //ME DA LA REFERENCIA DEL ARTISTA
   getArtistRef = () => {
     const {id} = this.props.artist
     return firebaseDatabase.ref(`artist/${id}`)
@@ -137,5 +137,4 @@ const styles = StyleSheet.create({
   count:{
     color:'gray',
   }
-
 });

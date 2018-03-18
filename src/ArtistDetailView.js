@@ -9,23 +9,47 @@ import {
   StyleSheet,
   View,
   TextInput,
+  TouchableOpacity,
 } from 'react-native';
 
 import ArtistBox from './ArtistBox';
-import { getArtists } from './api-client';
+
+import Icon from 'react-native-vector-icons/dist/Ionicons';
+
+import {firebaseDatabase, firebaseAuth} from './firebase';
 
 export default class ArtistDetailView extends Component  {
+
+  handleSend = () => {
+    const {text} = this.state
+    const artistCommentsRef = this.getArtistCommentRef()
+    // Create a new post reference with an auto-generated id
+    var newCommentRef = artistCommentsRef.push();
+    newCommentRef.set({text});
+  }
+
+  getArtistCommentRef = () => {
+    const {id} = this.props.artist
+    return firebaseDatabase.ref(`comments/${id}`)
+  }
+
+  handleChangeText = (text) => this.setState({text})
 
   render() {
     const artist = this.props.artist
     return (
       <View style={styles.container}>
         <ArtistBox artist={artist}/>
-        <TextInput
-          style={styles.input}
-          placeholder="Type here to translate!"
-          onChangeText={(text) => this.setState({text})}
-        />
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Opina sobre el artista"
+            onChangeText={this.handleChangeText}
+          />
+          <TouchableOpacity onPress={this.handleSend}>
+            <Icon name="ios-send-outline" size={30} color="gray" />
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -37,7 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightgray',
     paddingTop: 70,
   },
-  input:{
+  inputContainer:{
     position: 'absolute',
     bottom:0,
     right:0,
@@ -45,5 +69,11 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: 'white',
     paddingHorizontal: 10,
-  }
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  input:{
+    height: 50,
+    flex: 1,
+  },
 });
