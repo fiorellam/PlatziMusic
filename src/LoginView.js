@@ -15,17 +15,9 @@ import { Container, Form, Input, Item, Button, Label } from 'native-base' // 2.3
 
 import {Actions} from 'react-native-router-flux';
 
-import * as firebase from 'firebase';
 
-const config = {
-    apiKey: "AIzaSyD0UuMYgGGuDaAoyj8xLkOsuCdJaKtc8L0",
-    authDomain: "platzimusic-caa84.firebaseapp.com",
-    databaseURL: "https://platzimusic-caa84.firebaseio.com",
-    projectId: "platzimusic-caa84",
-    storageBucket: "platzimusic-caa84.appspot.com",
-    messagingSenderId: "59978537604"
-  };
-  firebase.initializeApp(config);
+import {firebaseDatabase } from './firebase';
+import firebase from './firebase';
 
 export default class LoginView extends Component {
 
@@ -78,27 +70,27 @@ export default class LoginView extends Component {
     return (
       <Container style={styles.container}>
         <Text style={styles.welcome} onPress={()=>this.handlePress()}> Bienvenidos a PlatziMusic </Text>
-        <Form>
-          <Item floatingLabel>
-              <Label>Email</Label>
+        <Form style={styles.form}>
+          <Item >
               <Input
                   autoCorrect={false}
                   autoCapitalize="none"
+                  placeholder ='Email'
                   onChangeText={(email) => this.setState({ email })}
               />
           </Item>
 
-          <Item floatingLabel>
-              <Label>Password</Label>
+          <Item>
               <Input
                   secureTextEntry={true}
                   autoCorrect={false}
                   autoCapitalize="none"
+                  placeholder ='Password'
                   onChangeText={(password) => this.setState({ password })}
               />
           </Item>
 
-          <Button style={{ marginTop: 10 }}
+          <Button style={styles.button}
               full
               rounded
               success
@@ -107,7 +99,7 @@ export default class LoginView extends Component {
               <Text style={{ color: 'black' }}> Login</Text>
           </Button>
 
-          <Button style={{ marginTop: 10 }}
+          <Button style={styles.button}
               full
               rounded
               primary
@@ -131,6 +123,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '400',
     marginBottom: 20,
+  },
+  form :{
+    width: 250,
+  },
+  button:{
+    marginTop: 10,
   }
 
 });
